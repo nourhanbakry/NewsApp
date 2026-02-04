@@ -10,7 +10,9 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSearchNewsBinding
 import com.example.newsapp.view.adapters.NewsAdapter
 import com.example.newsapp.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchNewsFragment : Fragment() {
     lateinit var newsViewModel: NewsViewModel
     lateinit var binding: FragmentSearchNewsBinding

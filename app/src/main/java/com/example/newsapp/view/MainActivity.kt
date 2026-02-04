@@ -2,6 +2,7 @@ package com.example.newsapp.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,10 +17,12 @@ import com.example.newsapp.model.localdata.NewsDataBase
 import com.example.newsapp.model.reposotry.NewsRepositry
 import com.example.newsapp.viewmodel.NewsViewModel
 import com.example.newsapp.viewmodel.NewsViewModelProviderFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var newsViewModel: NewsViewModel
+    val newsViewModel: NewsViewModel by viewModels()
     lateinit var newsRepositry: NewsRepositry
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +33,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        newsRepositry = NewsRepositry(NewsDataBase.getNewsDBInstance(this),application)
-        val newsViewModelProviderFactory = NewsViewModelProviderFactory(newsRepositry)
-        newsViewModel = ViewModelProvider(this, newsViewModelProviderFactory).get(NewsViewModel::class.java)
-
         // setup bottom nav bar with nav controller
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_frag) as NavHostFragment
         binding.bottomNavBar.setupWithNavController(navHostFragment.findNavController())

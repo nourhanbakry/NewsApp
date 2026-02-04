@@ -5,6 +5,8 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt") // Add this line
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -85,5 +87,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:5.0.5")
     ksp("com.github.bumptech.glide:compiler:5.0.5")
     implementation("com.airbnb.android:lottie:6.7.1")
+
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.57.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.57.1")
 
 }

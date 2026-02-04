@@ -9,7 +9,9 @@ import com.example.newsapp.databinding.FragmentBrakingNewsBinding
 import com.example.newsapp.view.MainActivity
 import com.example.newsapp.view.adapters.NewsAdapter
 import com.example.newsapp.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BrakingNewsFragment : Fragment() {
     lateinit var newsViewModel: NewsViewModel
     lateinit var binding: FragmentBrakingNewsBinding

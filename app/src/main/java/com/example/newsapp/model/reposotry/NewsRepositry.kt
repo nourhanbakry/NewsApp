@@ -18,8 +18,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class NewsRepositry(val newsDataBase: NewsDataBase,val application: Application) {
+class NewsRepositry @Inject constructor(private val newsDataBase: NewsDataBase,private val application: Application) {
 
     fun getBreakingNews(country:String, pageNo:Int): Flow<NewsState<List<Article?>?>> {
         return flow {

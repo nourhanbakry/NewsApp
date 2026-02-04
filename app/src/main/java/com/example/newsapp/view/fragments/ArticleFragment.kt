@@ -11,7 +11,9 @@ import com.example.newsapp.model.entity.Article
 import com.example.newsapp.view.MainActivity
 import com.example.newsapp.view.adapters.NewsAdapter
 import com.example.newsapp.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ArticleFragment : Fragment() {
     lateinit var binding: FragmentArticleBinding
     lateinit var newsAdapter: NewsAdapter

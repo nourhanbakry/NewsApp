@@ -10,8 +10,10 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSavedNewsBinding
 import com.example.newsapp.view.adapters.NewsAdapter
 import com.example.newsapp.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class SavedNewsFragment : Fragment() {
     lateinit var newsViewModel: NewsViewModel
     lateinit var binding: FragmentSavedNewsBinding

@@ -9,23 +9,24 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsapp.utils.NewsState
 import com.example.newsapp.model.entity.Article
 import com.example.newsapp.model.reposotry.NewsRepositry
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewsViewModel(
-    val newsRepositry: NewsRepositry,
+@HiltViewModel
+class NewsViewModel @Inject constructor(
+   private val newsRepositry: NewsRepositry,
 ): ViewModel() {
     val breakingNewsLiveData = MutableLiveData<NewsState<List<Article?>?>>()
     var breakingNewsPage =1
     val searchNewsLiveData = MutableLiveData<NewsState<List<Article?>?>>()
     var searchNewsPage = 1
     val savedArticlesInDB = MutableLiveData<NewsState<List<Article?>?>>()
-    val searchQuery = MutableLiveData<String>()
-
-
-
+    val searchQuery = MutableStateFlow("")
 
      fun getBreakingNews(country: String){
          viewModelScope.launch {
@@ -71,7 +72,7 @@ class NewsViewModel(
         getBreakingNews("us")
         getSavedArticlesFromDB()
         viewModelScope.launch {
-            searchQuery.asFlow()
+            searchQuery
                 .debounce(500)
                 .filter { it.isNotBlank() }
                 .distinctUntilChanged()
